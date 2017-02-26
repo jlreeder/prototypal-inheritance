@@ -1,19 +1,33 @@
-const Book = require("./book.js");
-const KidsBook = require("./kidsBook.js");
+function Book(title, author) {
+    this.title = title;
+    this.author = author;
+}
+
+Book.prototype.turnPage = function() {
+    console.log(`Page has been turned in ${this.title}.`);
+};
 
 const mockingbird = new Book("To Kill a Mockingbird", "Harper Lee");
 // mockingbird.turnPage();
 
-let that = this;
 Function.prototype.inherits = function(SuperClass) {
-  let Surrogate = function () {};
+  function Surrogate () {}
   Surrogate.prototype = SuperClass.prototype;
-  that.prototype = new Surrogate();
-  that.prototype.constructor = that;
+  this.prototype = new Surrogate();
+  this.prototype.constructor = this;
   // debugger;
 };
 
+function KidsBook(title, author) {
+    this.title = title;
+    this.author = author;
+}
+
 KidsBook.inherits(Book);
+
+KidsBook.prototype.showPicture = function() {
+    console.log(`Picture shown from ${this.title}.`);
+};
 
 const caterpillar = new KidsBook("The Very Hungry Caterpillar",
                                  "Eric Carle"
